@@ -1,8 +1,15 @@
-import { SafeAreaView, StyleSheet, StatusBar, View } from 'react-native'
+import {
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  View,
+  ScrollView,
+} from 'react-native'
 import React from 'react'
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar'
 import Categories from '../components/Categories'
+import RestaurantsItem from '../components/RestaurantsItem'
 
 export default function Home() {
   return (
@@ -10,8 +17,13 @@ export default function Home() {
       <View style={styles.content}>
         <HeaderTabs />
         <SearchBar />
-        <Categories />
       </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Categories />
+        {new Array(10).fill(0).map((_, index) => {
+          return <RestaurantsItem key={index} />
+        })}
+      </ScrollView>
     </View>
   )
 }
@@ -19,7 +31,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#cccccc',
+    backgroundColor: '#eeeeee',
   },
   content: {
     marginTop: StatusBar.currentHeight + 10,

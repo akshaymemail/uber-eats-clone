@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
     marginHorizontal: 10,
+    marginVertical: 10,
   },
   textInput: {
     backgroundColor: '#eeeeee',

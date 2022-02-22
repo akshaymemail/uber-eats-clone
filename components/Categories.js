@@ -40,25 +40,30 @@ const items = [
 
 export default function Categories() {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {items.map(({ title, image }, index) => {
-        return (
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => console.log(title)}
-          >
-            <Image style={styles.image} source={image} />
-            <Text style={styles.title} key={index}>
-              {title}
-            </Text>
-          </TouchableOpacity>
-        )
-      })}
-    </ScrollView>
+    <View style={styles.content}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {items.map(({ title, image }, index) => {
+          return (
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => console.log(title)}
+              key={index}
+            >
+              <Image style={styles.image} source={image} />
+              <Text style={styles.title}>{title}</Text>
+            </TouchableOpacity>
+          )
+        })}
+      </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  content: {
+    marginVertical: 5,
+    backgroundColor: '#ffffff',
+  },
   item: {
     margin: 15,
   },
