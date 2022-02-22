@@ -6,18 +6,16 @@ export default function HeaderTabs() {
   console.log('activeTab', activeTab)
   return (
     <View style={styles.content}>
-      <View style={styles.row}>
-        <HeaderButton
-          title="Delivery"
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
-        <HeaderButton
-          title="Pickup"
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
-      </View>
+      <HeaderButton
+        title="Delivery"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+      <HeaderButton
+        title="Pickup"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </View>
   )
 }
@@ -45,10 +43,6 @@ const HeaderButton = ({ title, activeTab, setActiveTab }) => {
 
 const styles = StyleSheet.create({
   content: {
-    backgroundColor: '#ffffff',
-    padding: 20,
-  },
-  row: {
     flexDirection: 'row',
     alignSelf: 'center',
   },
