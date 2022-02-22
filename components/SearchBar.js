@@ -7,7 +7,7 @@ export default function SearchBar() {
   return (
     <View style={styles.searchBar}>
       <GooglePlacesAutocomplete
-        placeholder="search"
+        placeholder="Start typing here..."
         styles={{
           textInput: styles.textInput,
           textInputContainer: styles.textInputContainer,
@@ -15,7 +15,7 @@ export default function SearchBar() {
         renderLeftButton={() => {
           return (
             <View style={{ marginLeft: 10 }}>
-              <Ionicons name="location-sharp" size={24} color="#000" />
+              <Ionicons name="location-sharp" size={20} color="#000" />
             </View>
           )
         }}
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     marginTop: 20,
+    marginHorizontal: 10,
   },
   textInput: {
     backgroundColor: '#eeeeee',
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 10,
   },
   rightButton: {
     flexDirection: 'row',
