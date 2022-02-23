@@ -3,22 +3,24 @@ import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import COLORS from '../constants/colors'
 
-export default function RestaurantsItem() {
-  return (
-    <TouchableOpacity style={styles.content} activeOpacity={0.8}>
-      <RestaurantsImage />
-      <RestaurantsInfo />
-    </TouchableOpacity>
-  )
+export default function RestaurantsItems({ restaurants }) {
+  return restaurants.map(({ name, image, stars, deliveryTime }, index) => {
+    return (
+      <TouchableOpacity key={index} style={styles.content} activeOpacity={0.8}>
+        <RestaurantsImage imageUrl={image} />
+        <RestaurantsInfo name={name} time={deliveryTime} rating={stars} />
+      </TouchableOpacity>
+    )
+  })
 }
 
-const RestaurantsImage = () => {
+const RestaurantsImage = ({ imageUrl }) => {
   return (
     <View>
       <Image
         style={styles.image}
         source={{
-          uri: 'https://img.etimg.com/thumb/width-1200,height-900,imgsize-829462,resizemode-1,msid-82666514/industry/services/hotels-/-restaurants/staggered-lockdowns-start-to-bite-battered-restaurants.jpg',
+          uri: imageUrl,
         }}
       />
       <TouchableOpacity style={styles.favorite}>
@@ -32,15 +34,15 @@ const RestaurantsImage = () => {
   )
 }
 
-const RestaurantsInfo = () => {
+const RestaurantsInfo = ({ name, time, rating }) => {
   return (
     <View style={styles.row}>
       <View>
-        <Text style={styles.name}>Hotel Rajdarbar</Text>
-        <Text style={styles.time}>00 : 25 m</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.time}>{time}</Text>
       </View>
       <View>
-        <Text style={styles.rating}>4.5</Text>
+        <Text style={styles.rating}>{rating}</Text>
       </View>
     </View>
   )

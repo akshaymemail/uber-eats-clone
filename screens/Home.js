@@ -9,7 +9,9 @@ import React from 'react'
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar'
 import Categories from '../components/Categories'
-import RestaurantsItem from '../components/RestaurantsItem'
+import RestaurantsItems from '../components/RestaurantsItems'
+import categoriesList from '../fake-db/categories'
+import restaurants from '../fake-db/restaurants'
 
 export default function Home() {
   return (
@@ -19,10 +21,8 @@ export default function Home() {
         <SearchBar />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Categories />
-        {new Array(10).fill(0).map((_, index) => {
-          return <RestaurantsItem key={index} />
-        })}
+        <Categories categories={categoriesList} />
+        <RestaurantsItems restaurants={restaurants} />
       </ScrollView>
     </View>
   )
