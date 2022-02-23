@@ -6,15 +6,15 @@ import {
   RefreshControl,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderTabs from '../components/HeaderTabs'
-import SearchBar from '../components/SearchBar'
-import Categories from '../components/Categories'
-import RestaurantsItems from '../components/RestaurantsItems'
 import categoriesList from '../fake-db/categories'
-import LoadingBox from '../components/LoadingBox'
 import Keys from '../keys/keys'
-import BottomTabs from '../components/BottomTabs'
 import { Divider } from 'react-native-elements'
+import LoadingBox from '../components/common/LoadingBox'
+import HeaderTabs from '../components/home/HeaderTabs'
+import BottomTabs from '../components/home/BottomTabs'
+import SearchBar from '../components/home/SearchBar'
+import Categories from '../components/home/Categories'
+import RestaurantsItems from '../components/home/RestaurantsItems'
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([])

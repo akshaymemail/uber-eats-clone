@@ -2,8 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
-import COLORS from '../constants/colors'
-import Keys from '../keys/keys'
+import COLORS from '../../constants/colors'
+import Keys from '../../keys/keys'
 
 export default function SearchBar() {
   return (

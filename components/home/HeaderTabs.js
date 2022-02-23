@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import COLORS from '../constants/colors'
+import COLORS from '../../constants/colors'
 
 export default function HeaderTabs({ activeTab, setActiveTab }) {
   return (

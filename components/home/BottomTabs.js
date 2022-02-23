@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import COLORS from '../constants/colors'
+import COLORS from '../../constants/colors'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 export default function BottomTabs() {

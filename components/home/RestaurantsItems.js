@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
-import COLORS from '../constants/colors'
+import COLORS from '../../constants/colors'
 
 export default function RestaurantsItems({ activeTab, restaurants }) {
   if (restaurants.length === 0) {
