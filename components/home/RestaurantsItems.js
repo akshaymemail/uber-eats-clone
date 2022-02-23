@@ -3,7 +3,7 @@ import React from 'react'
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 import COLORS from '../../constants/colors'
 
-export default function RestaurantsItems({ activeTab, restaurants }) {
+export default function RestaurantsItems({ activeTab, restaurants, onPress }) {
   if (restaurants.length === 0) {
     return (
       <View style={styles.noRestaurants}>
@@ -23,6 +23,7 @@ export default function RestaurantsItems({ activeTab, restaurants }) {
           key={index}
           style={styles.content}
           activeOpacity={0.8}
+          onPress={() => onPress(index)}
         >
           <RestaurantsImage imageUrl={image_url} />
           <RestaurantsInfo

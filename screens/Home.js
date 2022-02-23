@@ -16,7 +16,7 @@ import SearchBar from '../components/home/SearchBar'
 import Categories from '../components/home/Categories'
 import RestaurantsItems from '../components/home/RestaurantsItems'
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [restaurants, setRestaurants] = useState([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
@@ -62,7 +62,11 @@ export default function Home() {
         }
       >
         <Categories categories={categoriesList} />
-        <RestaurantsItems activeTab={activeTab} restaurants={restaurants} />
+        <RestaurantsItems
+          activeTab={activeTab}
+          restaurants={restaurants}
+          onPress={() => navigation.navigate('Details')}
+        />
       </ScrollView>
       <Divider width={1} />
       <BottomTabs />

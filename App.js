@@ -1,9 +1,8 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import Details from './screens/Details'
-import Home from './screens/Home'
+import { StyleSheet, Text, View } from 'react-native'
+import Navigator from './navigation/Navigator'
 
 export default function App() {
-  return <Details />
+  return <Navigator />
 }
 
 const styles = StyleSheet.create({
