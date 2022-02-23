@@ -25,7 +25,7 @@ const RestaurantsImage = () => {
         <MaterialCommunityIcons
           name="heart-outline"
           size={30}
-          color="#ffffff"
+          color={COLORS.white}
         />
       </TouchableOpacity>
     </View>

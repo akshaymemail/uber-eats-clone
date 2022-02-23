@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import COLORS from '../constants/colors'
 
 export default function HeaderTabs() {
   const [activeTab, setActiveTab] = useState('Delivery')
@@ -25,14 +26,14 @@ const HeaderButton = ({ title, activeTab, setActiveTab }) => {
     <TouchableOpacity
       style={{
         ...styles.button,
-        backgroundColor: activeTab === title ? '#000000' : '#ffffff',
+        backgroundColor: activeTab === title ? COLORS.black : COLORS.white,
       }}
       onPress={() => setActiveTab(title)}
     >
       <Text
         style={{
           ...styles.buttonText,
-          color: activeTab === title ? '#f1f1f1' : '#000000',
+          color: activeTab === title ? COLORS.white : COLORS.black,
         }}
       >
         {title}
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   buttonText: {
-    color: '#fff',
+    color: COLORS.white,
     fontSize: 16,
     fontWeight: 'bold',
   },
