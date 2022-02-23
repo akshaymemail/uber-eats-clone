@@ -2,9 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import COLORS from '../constants/colors'
 
-export default function HeaderTabs() {
-  const [activeTab, setActiveTab] = useState('Delivery')
-  console.log('activeTab', activeTab)
+export default function HeaderTabs({ activeTab, setActiveTab }) {
   return (
     <View style={styles.content}>
       <HeaderButton

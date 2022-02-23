@@ -3,7 +3,7 @@ import React from 'react'
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 import COLORS from '../constants/colors'
 
-export default function RestaurantsItems({ restaurants }) {
+export default function RestaurantsItems({ activeTab, restaurants }) {
   if (restaurants.length === 0) {
     return (
       <View style={styles.noRestaurants}>
@@ -12,18 +12,28 @@ export default function RestaurantsItems({ restaurants }) {
       </View>
     )
   }
-  return restaurants.map(({ name, image_url, rating, deliveryTime }, index) => {
-    return (
-      <TouchableOpacity key={index} style={styles.content} activeOpacity={0.8}>
-        <RestaurantsImage imageUrl={image_url} />
-        <RestaurantsInfo
-          name={name}
-          time={(deliveryTime = '30-45 min')}
-          rating={rating}
-        />
-      </TouchableOpacity>
-    )
-  })
+  const filteredRestaurants = restaurants.filter((restaurant) =>
+    restaurant.transactions.includes(activeTab.toLowerCase())
+  )
+
+  return filteredRestaurants.map(
+    ({ name, image_url, rating, deliveryTime }, index) => {
+      return (
+        <TouchableOpacity
+          key={index}
+          style={styles.content}
+          activeOpacity={0.8}
+        >
+          <RestaurantsImage imageUrl={image_url} />
+          <RestaurantsInfo
+            name={name}
+            time={(deliveryTime = '30-45 min')}
+            rating={rating}
+          />
+        </TouchableOpacity>
+      )
+    }
+  )
 }
 
 const RestaurantsImage = ({ imageUrl }) => {

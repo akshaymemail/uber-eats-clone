@@ -18,6 +18,7 @@ export default function Home() {
   const [restaurants, setRestaurants] = useState([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const [activeTab, setActiveTab] = useState('Delivery')
   const [city, setCity] = useState('hollywood')
   useEffect(() => {
     fetch(
@@ -31,8 +32,6 @@ export default function Home() {
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.businesses)
-        console.log('refreshing: ', refreshing)
         setRestaurants(json.businesses || [])
         setLoading(false)
         setRefreshing(false)
@@ -48,7 +47,7 @@ export default function Home() {
   return (
     <View style={styles.screen}>
       <View style={styles.content}>
-        <HeaderTabs />
+        <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar city={city} setCity={setCity} />
       </View>
       <ScrollView
@@ -61,7 +60,7 @@ export default function Home() {
         }
       >
         <Categories categories={categoriesList} />
-        <RestaurantsItems restaurants={restaurants} />
+        <RestaurantsItems activeTab={activeTab} restaurants={restaurants} />
       </ScrollView>
     </View>
   )
