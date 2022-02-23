@@ -13,6 +13,8 @@ import RestaurantsItems from '../components/RestaurantsItems'
 import categoriesList from '../fake-db/categories'
 import LoadingBox from '../components/LoadingBox'
 import Keys from '../keys/keys'
+import BottomTabs from '../components/BottomTabs'
+import { Divider } from 'react-native-elements'
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([])
@@ -62,6 +64,8 @@ export default function Home() {
         <Categories categories={categoriesList} />
         <RestaurantsItems activeTab={activeTab} restaurants={restaurants} />
       </ScrollView>
+      <Divider width={1} />
+      <BottomTabs />
     </View>
   )
 }
