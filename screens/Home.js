@@ -11,21 +11,21 @@ import SearchBar from '../components/SearchBar'
 import Categories from '../components/Categories'
 import RestaurantsItems from '../components/RestaurantsItems'
 import categoriesList from '../fake-db/categories'
-import { YELP_API_KEY } from '../keys/keys'
 import LoadingBox from '../components/LoadingBox'
+import Keys from '../keys/keys'
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
-  const [city, setCity] = useState('new york')
+  const [city, setCity] = useState('hollywood')
   useEffect(() => {
     fetch(
-      `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}&limit=50`,
+      `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`,
       {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${YELP_API_KEY}`,
+          Authorization: `Bearer ${Keys.YELP_API_KEY}`,
         },
       }
     )

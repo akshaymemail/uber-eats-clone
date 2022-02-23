@@ -3,12 +3,16 @@ import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import COLORS from '../constants/colors'
+import Keys from '../keys/keys'
 
 export default function SearchBar() {
   return (
     <View style={styles.searchBar}>
       <GooglePlacesAutocomplete
         placeholder="Start typing here..."
+        query={{ key: Keys.GOOGLE_PLACE_API_KEY }}
+        onFail={(error) => console.log(error)}
+        textInputProps={{}}
         styles={{
           textInput: styles.textInput,
           textInputContainer: styles.textInputContainer,
@@ -26,7 +30,7 @@ export default function SearchBar() {
               <AntDesign
                 name="clockcircle"
                 size={14}
-                color="#000"
+                color={COLORS.black}
                 style={{ marginRight: 10 }}
               />
               <Text>Search</Text>
