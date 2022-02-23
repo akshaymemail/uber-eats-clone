@@ -54,10 +54,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.foreground,
     paddingVertical: 20,
     marginBottom: 25,
+    paddingHorizontal: 5,
   },
   image: {
     width: '100%',
     height: 200,
+    borderRadius: 5,
   },
   favorite: {
     position: 'absolute',
@@ -67,9 +69,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 5,
     alignItems: 'center',
     marginTop: 5,
+    paddingHorizontal: 5,
   },
   name: {
     fontSize: 16,
