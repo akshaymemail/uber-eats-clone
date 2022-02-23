@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 20,
-    marginVertical: 30,
-    paddingVertical: 30,
+    marginVertical: 20,
+    paddingVertical: 20,
   },
   title: {
     fontSize: 20,
