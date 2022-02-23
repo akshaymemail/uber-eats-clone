@@ -16,7 +16,11 @@ export default function RestaurantsItems({ restaurants }) {
     return (
       <TouchableOpacity key={index} style={styles.content} activeOpacity={0.8}>
         <RestaurantsImage imageUrl={image_url} />
-        <RestaurantsInfo name={name} time={deliveryTime} rating={rating} />
+        <RestaurantsInfo
+          name={name}
+          time={(deliveryTime = '30-45 min')}
+          rating={rating}
+        />
       </TouchableOpacity>
     )
   })
