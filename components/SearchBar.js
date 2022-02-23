@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
+import COLORS from '../constants/colors'
 
 export default function SearchBar() {
   return (
@@ -45,13 +46,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   textInput: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: COLORS.background,
     borderRadius: 20,
     fontWeight: '700',
     marginTop: 10,
   },
   textInputContainer: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: COLORS.background,
     borderRadius: 50,
     flexDirection: 'row',
     alignItems: 'center',
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginRight: 10,
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.foreground,
     padding: 10,
     borderRadius: 30,
   },

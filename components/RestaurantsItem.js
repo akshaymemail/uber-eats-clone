@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import COLORS from '../constants/colors'
 
 export default function RestaurantsItem() {
   return (
@@ -48,7 +49,7 @@ const RestaurantsInfo = () => {
 const styles = StyleSheet.create({
   content: {
     marginVertical: 5,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.foreground,
     paddingVertical: 20,
     marginBottom: 25,
   },

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import React from 'react'
+import COLORS from '../constants/colors'
 const items = [
   {
     title: 'Pick-up',
@@ -62,7 +63,7 @@ export default function Categories() {
 const styles = StyleSheet.create({
   content: {
     marginVertical: 5,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.foreground,
   },
   item: {
     margin: 15,
