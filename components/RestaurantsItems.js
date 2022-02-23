@@ -1,14 +1,22 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 import COLORS from '../constants/colors'
 
 export default function RestaurantsItems({ restaurants }) {
-  return restaurants.map(({ name, image, stars, deliveryTime }, index) => {
+  if (restaurants.length === 0) {
+    return (
+      <View style={styles.noRestaurants}>
+        <AntDesign name="frowno" size={100} color={COLORS.primary} />
+        <Text style={styles.notFoundText}>Sorry! No restaurants found.</Text>
+      </View>
+    )
+  }
+  return restaurants.map(({ name, image_url, rating, deliveryTime }, index) => {
     return (
       <TouchableOpacity key={index} style={styles.content} activeOpacity={0.8}>
-        <RestaurantsImage imageUrl={image} />
-        <RestaurantsInfo name={name} time={deliveryTime} rating={stars} />
+        <RestaurantsImage imageUrl={image_url} />
+        <RestaurantsInfo name={name} time={deliveryTime} rating={rating} />
       </TouchableOpacity>
     )
   })
@@ -42,7 +50,7 @@ const RestaurantsInfo = ({ name, time, rating }) => {
         <Text style={styles.time}>{time}</Text>
       </View>
       <View>
-        <Text style={styles.rating}>{rating}</Text>
+        <Text style={styles.rating}>{rating.toFixed(1)}</Text>
       </View>
     </View>
   )
@@ -85,5 +93,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     padding: 8,
     borderRadius: 20,
+  },
+  noRestaurants: {
+    marginTop: 50,
+    alignItems: 'center',
+  },
+  notFoundText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 10,
   },
 })
