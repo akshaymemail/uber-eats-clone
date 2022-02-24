@@ -10,12 +10,19 @@ const restaurantInfo = {
   rating: '4.5',
   categories: [{ title: 'Biryani' }, { title: 'Pizza' }, { title: 'Burger' }],
 }
-const { name, image, price, review, rating, categories } = restaurantInfo
-const description =
-  categories.map((c) => c.title).join(' • ') +
-  ` | ₹ ${price}  👤 ( ${review} + )`
 
-export default function About() {
+export default function About({
+  name,
+  image,
+  price,
+  categories,
+  rating,
+  review,
+  time,
+}) {
+  const description =
+    categories.map((c) => c.title).join(' • ') +
+    ` | ₹ ${price}  👤 ( ${review} + ) | ${time} | ${rating}`
   return (
     <View>
       <Image style={styles.image} source={{ uri: image }} />

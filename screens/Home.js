@@ -1,9 +1,9 @@
 import {
   StyleSheet,
-  StatusBar,
   View,
   ScrollView,
   RefreshControl,
+  StatusBar as Status,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import categoriesList from '../fake-db/categories'
@@ -15,6 +15,7 @@ import BottomTabs from '../components/home/BottomTabs'
 import SearchBar from '../components/home/SearchBar'
 import Categories from '../components/home/Categories'
 import RestaurantsItems from '../components/home/RestaurantsItems'
+import { StatusBar } from 'expo-status-bar'
 
 export default function Home({ navigation }) {
   const [restaurants, setRestaurants] = useState([])
@@ -65,11 +66,12 @@ export default function Home({ navigation }) {
         <RestaurantsItems
           activeTab={activeTab}
           restaurants={restaurants}
-          onPress={() => navigation.navigate('Details')}
+          navigation={navigation}
         />
       </ScrollView>
       <Divider width={1} />
       <BottomTabs />
+      <StatusBar style="dark" />
     </View>
   )
 }
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
   },
   content: {
-    marginTop: StatusBar.currentHeight + 10,
+    marginTop: Status.currentHeight + 10,
     backgroundColor: '#ffffff',
     paddingVertical: 20,
   },
