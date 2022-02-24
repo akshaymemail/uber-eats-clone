@@ -12,13 +12,15 @@ import { Ionicons } from '@expo/vector-icons'
 import OrderItem from './OrderItem'
 import COLORS from '../../constants/colors'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Divider } from 'react-native-elements'
 import db from '../../firebase/firebase'
 import { collection, addDoc } from 'firebase/firestore'
+import { emptyCartItems } from '../../redux/cart/actions'
 
 export default function CartModal({ modal, setModal, name }) {
   const { cartItems } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   const addOrderToFirebase = async () => {
     try {
       const orderRef = await addDoc(collection(db, 'orders'), {
@@ -28,6 +30,7 @@ export default function CartModal({ modal, setModal, name }) {
         date: new Date().toISOString(),
       })
       console.log('Order is created with : ', orderRef.id)
+      dispatch(emptyCartItems())
       setModal(false)
     } catch (error) {
       console.log(e)

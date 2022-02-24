@@ -6,3 +6,7 @@ export const addToCart = (item) => (dispatch) => {
 export const removeFromCard = (id) => (dispatch) => {
   dispatch({ type: Types.REMOVE_FROM_CART, payload: id })
 }
+
+export const emptyCartItems = () => (dispatch) => {
+  dispatch({ type: Types.EMPTY_CART_ITEM, payload: [] })
+}
