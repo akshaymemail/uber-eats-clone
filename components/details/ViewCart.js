@@ -10,7 +10,7 @@ import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
 import { useSelector } from 'react-redux'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
-import CardModal from './CardModal'
+import CarrModal from './CartModal'
 
 export default function ViewCart({ navigation, name }) {
   const { cartItems } = useSelector((state) => state.cart)
@@ -44,7 +44,7 @@ export default function ViewCart({ navigation, name }) {
           </View>
         </View>
       </View>
-      <CardModal modal={modal} setModal={setModal} name={name} />
+      <CartModal modal={modal} setModal={setModal} name={name} />
     </Fragment>
   ) : null
 }

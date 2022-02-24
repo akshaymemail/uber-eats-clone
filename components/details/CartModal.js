@@ -14,7 +14,7 @@ import COLORS from '../../constants/colors'
 import { getTotalCartPrice } from '../../helpers/details'
 import { useSelector } from 'react-redux'
 
-export default function CardModal({ modal, setModal, name }) {
+export default function CartModal({ modal, setModal, name }) {
   const { cartItems } = useSelector((state) => state.cart)
   return (
     <Modal
