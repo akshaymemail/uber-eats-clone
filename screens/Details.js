@@ -5,6 +5,7 @@ import About from '../components/details/About'
 import { StatusBar } from 'expo-status-bar'
 import MenuItems from '../components/details/MenuItems'
 import COLORS from '../constants/colors'
+import ViewCart from '../components/details/ViewCart'
 
 export default function Details({ route, navigation }) {
   const { params } = route
@@ -12,6 +13,7 @@ export default function Details({ route, navigation }) {
   const time = '35-40 min'
   return (
     <View style={styles.screen}>
+      <StatusBar style="inverted" />
       <About
         name={name}
         image={image_url}
@@ -23,7 +25,7 @@ export default function Details({ route, navigation }) {
       />
       <Divider width={2} style={{ marginVertical: 20 }} />
       <MenuItems />
-      <StatusBar style="inverted" />
+      <ViewCart navigation={navigation} />
     </View>
   )
 }
