@@ -11,8 +11,9 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import OrderItem from './OrderItem'
 import COLORS from '../../constants/colors'
-import { getTotalCartPrice } from '../../helpers/details'
+import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
 import { useSelector } from 'react-redux'
+import { Divider } from 'react-native-elements'
 
 export default function CartModal({ modal, setModal, name }) {
   const { cartItems } = useSelector((state) => state.cart)
@@ -34,7 +35,7 @@ export default function CartModal({ modal, setModal, name }) {
           <ScrollView showsVerticalScrollIndicator={false}>
             <OrderItem cartItems={cartItems} />
             <SubTotal cartItems={cartItems} />
-            <CheckOutButton />
+            <CheckOutButton cartItems={cartItems} />
           </ScrollView>
         </View>
       </View>
@@ -51,10 +52,24 @@ const SubTotal = ({ cartItems }) => {
   )
 }
 
-const CheckOutButton = () => {
+const CheckOutButton = ({ cartItems }) => {
   return (
     <View style={styles.checkoutButton}>
-      <Text style={styles.checkoutText}>Checkout</Text>
+      <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
+      <Divider
+        width={2}
+        style={{ borderColor: '#424242' }}
+        orientation="vertical"
+      />
+      <Text style={styles.text}> ₹ {getTotalCartPrice(cartItems)}</Text>
+      <Divider
+        width={2}
+        style={{ borderColor: '#424242' }}
+        orientation="vertical"
+      />
+      <TouchableOpacity onPress={() => console.log('checkout pressed')}>
+        <Text style={styles.text}> Checkout</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -88,13 +103,24 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   checkoutButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     backgroundColor: COLORS.black,
     width: Dimensions.get('window').width * 0.8,
     alignSelf: 'center',
-    marginVertical: 30,
+    marginVertical: 50,
+    padding: 20,
+    borderRadius: 40,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
   },
-  checkoutText: {
+  text: {
     color: COLORS.white,
     textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 })
