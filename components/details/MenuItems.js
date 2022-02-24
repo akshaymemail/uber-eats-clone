@@ -35,6 +35,8 @@ const Checkbox = () => {
       unfillColor="white"
       iconStyle={{ borderColor: 'green' }}
       onPress={(e) => console.log(e)}
+      bounceEffect={1}
+      bounceFriction={0.5}
     />
   )
 }
