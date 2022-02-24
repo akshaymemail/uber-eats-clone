@@ -5,13 +5,12 @@ import { Divider } from 'react-native-elements'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCard } from '../../redux/cart/actions'
+import { isExistInCart } from '../../helpers/details'
 
 export default function MenuItems() {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((state) => state.cart)
-  console.log(cartItems)
   const checkBoxHandler = (state, item) => {
-    console.log(state)
     const { id } = item
     if (state) {
       dispatch(addToCart(item))
@@ -22,11 +21,16 @@ export default function MenuItems() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((item, index) => {
-        const { title, description, price, image } = item
+        const { id, title, description, price, image } = item
         return (
           <View key={index}>
             <View style={styles.container}>
-              <Checkbox onPress={(state) => checkBoxHandler(state, item)} />
+              <Checkbox
+                onPress={(state) => checkBoxHandler(state, item)}
+                isExistInCart={isExistInCart}
+                cartItems={cartItems}
+                id={id}
+              />
               <MenuItemInfo
                 title={title}
                 description={description}
@@ -43,7 +47,7 @@ export default function MenuItems() {
   )
 }
 
-const Checkbox = ({ onPress }) => {
+const Checkbox = ({ onPress, cartItems, isExistInCart, id }) => {
   return (
     <BouncyCheckbox
       size={40}
@@ -53,6 +57,7 @@ const Checkbox = ({ onPress }) => {
       onPress={(state) => onPress(state)}
       bounceEffect={1}
       bounceFriction={0.5}
+      isChecked={isExistInCart(cartItems, id)}
     />
   )
 }
