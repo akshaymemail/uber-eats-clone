@@ -10,7 +10,7 @@ import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
 import { useSelector } from 'react-redux'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
-import CarrModal from './CartModal'
+import CartModal from './CartModal'
 
 export default function ViewCart({ navigation, name }) {
   const { cartItems } = useSelector((state) => state.cart)
