@@ -7,7 +7,7 @@ export default function OrderItem({ cartItems }) {
     <Fragment>
       {cartItems.map(({ title, price }, index) => {
         return (
-          <Fragment>
+          <Fragment key={index}>
             <View style={styles.container}>
               <View>
                 <Text>{index + 1}</Text>

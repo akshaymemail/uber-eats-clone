@@ -14,9 +14,25 @@ import COLORS from '../../constants/colors'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
 import { useSelector } from 'react-redux'
 import { Divider } from 'react-native-elements'
+import db from '../../firebase/firebase'
+import { collection, addDoc } from 'firebase/firestore'
 
 export default function CartModal({ modal, setModal, name }) {
   const { cartItems } = useSelector((state) => state.cart)
+  const addOrderToFirebase = async () => {
+    try {
+      const orderRef = await addDoc(collection(db, 'orders'), {
+        name,
+        items: cartItems,
+        total: getTotalCartPrice(cartItems),
+        date: new Date().toISOString(),
+      })
+      console.log('Order is created with : ', orderRef.id)
+      setModal(false)
+    } catch (error) {
+      console.log(e)
+    }
+  }
   return (
     <Modal
       visible={modal}
@@ -35,7 +51,10 @@ export default function CartModal({ modal, setModal, name }) {
           <ScrollView showsVerticalScrollIndicator={false}>
             <OrderItem cartItems={cartItems} />
             <SubTotal cartItems={cartItems} />
-            <CheckOutButton cartItems={cartItems} />
+            <CheckOutButton
+              cartItems={cartItems}
+              addOrderToFirebase={addOrderToFirebase}
+            />
           </ScrollView>
         </View>
       </View>
@@ -52,7 +71,7 @@ const SubTotal = ({ cartItems }) => {
   )
 }
 
-const CheckOutButton = ({ cartItems }) => {
+const CheckOutButton = ({ cartItems, addOrderToFirebase }) => {
   return (
     <View style={styles.checkoutButton}>
       <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
@@ -67,7 +86,7 @@ const CheckOutButton = ({ cartItems }) => {
         style={{ borderColor: '#424242' }}
         orientation="vertical"
       />
-      <TouchableOpacity onPress={() => console.log('checkout pressed')}>
+      <TouchableOpacity onPress={addOrderToFirebase}>
         <Text style={styles.text}> Checkout</Text>
       </TouchableOpacity>
     </View>
