@@ -9,6 +9,7 @@ import React from 'react'
 import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
 import { useSelector } from 'react-redux'
+import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
 
 export default function ViewCart({ navigation }) {
   const { cartItems } = useSelector((state) => state.cart)
@@ -22,13 +23,13 @@ export default function ViewCart({ navigation }) {
             marginHorizontal: 20,
           }}
         >
-          <Text style={styles.text}>5</Text>
+          <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
           <Divider
             width={2}
             style={{ borderColor: '#424242' }}
             orientation="vertical"
           />
-          <Text style={styles.text}> ₹ 5000</Text>
+          <Text style={styles.text}> ₹ {getTotalCartPrice(cartItems)}</Text>
           <Divider
             width={2}
             style={{ borderColor: '#424242' }}
