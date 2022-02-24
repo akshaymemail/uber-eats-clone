@@ -5,42 +5,47 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native'
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
 import { useSelector } from 'react-redux'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
+import CardModal from './CardModal'
 
-export default function ViewCart({ navigation }) {
+export default function ViewCart({ navigation, name }) {
   const { cartItems } = useSelector((state) => state.cart)
+  const [modal, setModal] = useState(false)
   return cartItems.length > 0 ? (
-    <View style={styles.container}>
-      <View style={styles.viewCart}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 20,
-          }}
-        >
-          <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
-          <Divider
-            width={2}
-            style={{ borderColor: '#424242' }}
-            orientation="vertical"
-          />
-          <Text style={styles.text}> ₹ {getTotalCartPrice(cartItems)}</Text>
-          <Divider
-            width={2}
-            style={{ borderColor: '#424242' }}
-            orientation="vertical"
-          />
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.text}> View Cart</Text>
-          </TouchableOpacity>
+    <Fragment>
+      <View style={styles.container}>
+        <View style={styles.viewCart}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal: 20,
+            }}
+          >
+            <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
+            <Divider
+              width={2}
+              style={{ borderColor: '#424242' }}
+              orientation="vertical"
+            />
+            <Text style={styles.text}> ₹ {getTotalCartPrice(cartItems)}</Text>
+            <Divider
+              width={2}
+              style={{ borderColor: '#424242' }}
+              orientation="vertical"
+            />
+            <TouchableOpacity onPress={() => setModal(!modal)}>
+              <Text style={styles.text}> View Cart</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+      <CardModal modal={modal} setModal={setModal} name={name} />
+    </Fragment>
   ) : null
 }
 

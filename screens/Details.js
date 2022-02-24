@@ -25,7 +25,7 @@ export default function Details({ route, navigation }) {
       />
       <Divider width={2} style={{ marginVertical: 20 }} />
       <MenuItems />
-      <ViewCart navigation={navigation} />
+      <ViewCart navigation={navigation} name={name} />
     </View>
   )
 }
