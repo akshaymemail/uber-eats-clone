@@ -22,7 +22,7 @@ export default function About({
 }) {
   const description =
     categories.map((c) => c.title).join(' • ') +
-    ` | ₹ ${price}  👤 ( ${review} + ) | ${time} | ${rating}`
+    ` | ₹ ${price}  👤 ( ${review} + ) | ${time} | ${rating.toFixed(1)}`
   return (
     <View>
       <Image style={styles.image} source={{ uri: image }} />
