@@ -42,7 +42,7 @@ export default function MenuItems() {
           </View>
         )
       })}
-      <Divider style={{ marginTop: 100 }} />
+      <Divider style={{ marginTop: 50 }} />
     </ScrollView>
   )
 }

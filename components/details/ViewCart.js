@@ -8,9 +8,11 @@ import {
 import React from 'react'
 import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
+import { useSelector } from 'react-redux'
 
 export default function ViewCart({ navigation }) {
-  return (
+  const { cartItems } = useSelector((state) => state.cart)
+  return cartItems.length > 0 ? (
     <View style={styles.container}>
       <View style={styles.viewCart}>
         <View
@@ -38,7 +40,7 @@ export default function ViewCart({ navigation }) {
         </View>
       </View>
     </View>
-  )
+  ) : null
 }
 
 const styles = StyleSheet.create({
