@@ -1,15 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import Navigator from './navigation/Navigator'
+import { Provider as ReduxProvider } from 'react-redux'
+import store from './redux/store'
 
 export default function App() {
-  return <Navigator />
+  return (
+    <ReduxProvider store={store}>
+      <Navigator />
+    </ReduxProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
