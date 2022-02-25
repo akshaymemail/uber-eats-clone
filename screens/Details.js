@@ -13,6 +13,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import db from '../firebase/firebase'
 import CartModal from '../components/details/CartModal'
 import OverlayLoading from '../components/common/OverlayLoading'
+import foods from '../fake-db/foods'
 
 export default function Details({ route, navigation }) {
   const { params } = route
@@ -37,7 +38,7 @@ export default function Details({ route, navigation }) {
   }, [])
 
   // fires up on press of add to cart button
-  const onPlaceOrder = useCallback(() => {
+  const onPlaceOrder = () => {
     setLoading(true)
     setModal(false)
     const totalPrice = getTotalCartPrice(cartItems)
@@ -59,7 +60,7 @@ export default function Details({ route, navigation }) {
         }, 2000)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }
   return (
     <View style={styles.screen}>
       <StatusBar style="inverted" />
@@ -73,7 +74,12 @@ export default function Details({ route, navigation }) {
         time={time}
       />
       <Divider width={2} style={{ marginVertical: 20 }} />
-      <MenuItems cartItems={cartItems} checkBoxHandler={checkBoxHandler} />
+      <MenuItems
+        foods={foods}
+        cartItems={cartItems}
+        checkBoxHandler={checkBoxHandler}
+        isCheckbox={true}
+      />
       <ViewCart cartItems={cartItems} modal={modal} setModal={setModal} />
       <CartModal
         modal={modal}

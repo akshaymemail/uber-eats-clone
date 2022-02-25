@@ -5,7 +5,12 @@ import { Divider } from 'react-native-elements'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { isExistInCart } from '../../helpers/details'
 
-export default function MenuItems({ cartItems, checkBoxHandler }) {
+export default function MenuItems({
+  foods,
+  cartItems,
+  checkBoxHandler,
+  isCheckbox,
+}) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((item, index) => {
@@ -13,12 +18,14 @@ export default function MenuItems({ cartItems, checkBoxHandler }) {
         return (
           <View key={index}>
             <View style={styles.container}>
-              <Checkbox
-                onPress={(state) => checkBoxHandler(state, item)}
-                isExistInCart={isExistInCart}
-                cartItems={cartItems}
-                id={id}
-              />
+              {isCheckbox && (
+                <Checkbox
+                  onPress={(state) => checkBoxHandler(state, item)}
+                  isExistInCart={isExistInCart}
+                  cartItems={cartItems}
+                  id={id}
+                />
+              )}
               <MenuItemInfo
                 title={title}
                 description={description}
