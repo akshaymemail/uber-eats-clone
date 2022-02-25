@@ -44,7 +44,12 @@ export default function ViewCart({ navigation, name }) {
           </View>
         </View>
       </View>
-      <CartModal modal={modal} setModal={setModal} name={name} />
+      <CartModal
+        modal={modal}
+        setModal={setModal}
+        name={name}
+        navigation={navigation}
+      />
     </Fragment>
   ) : null
 }

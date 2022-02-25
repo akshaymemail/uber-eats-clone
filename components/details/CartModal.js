@@ -18,23 +18,26 @@ import db from '../../firebase/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 import { emptyCartItems } from '../../redux/cart/actions'
 
-export default function CartModal({ modal, setModal, name }) {
+export default function CartModal({ modal, setModal, name, navigation }) {
   const { cartItems } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
-  const addOrderToFirebase = async () => {
-    try {
-      const orderRef = await addDoc(collection(db, 'orders'), {
-        name,
-        items: cartItems,
-        total: getTotalCartPrice(cartItems),
-        date: new Date().toISOString(),
+  const addOrderToFirebase = () => {
+    addDoc(collection(db, 'orders'), {
+      name,
+      items: cartItems,
+      total: getTotalCartPrice(cartItems),
+      date: new Date().toISOString(),
+    })
+      .then((res) => {
+        navigation.navigate('OrderPlaced', {
+          orderId: res.id,
+          total: getTotalCartPrice(cartItems),
+          restaurant: name,
+        })
+        setModal(false)
+        dispatch(emptyCartItems())
       })
-      console.log('Order is created with : ', orderRef.id)
-      dispatch(emptyCartItems())
-      setModal(false)
-    } catch (error) {
-      console.log(e)
-    }
+      .catch((err) => console.log(err))
   }
   return (
     <Modal
