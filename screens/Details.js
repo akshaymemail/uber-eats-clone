@@ -12,6 +12,7 @@ import { getTotalCartPrice } from '../helpers/details'
 import { collection, addDoc } from 'firebase/firestore'
 import db from '../firebase/firebase'
 import CartModal from '../components/details/CartModal'
+import OverlayLoading from '../components/common/OverlayLoading'
 
 export default function Details({ route, navigation }) {
   const { params } = route
@@ -20,6 +21,7 @@ export default function Details({ route, navigation }) {
   const dispatch = useDispatch()
 
   const [modal, setModal] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // get cart items form redux
   const { cartItems } = useSelector((state) => state.cart)
@@ -36,19 +38,25 @@ export default function Details({ route, navigation }) {
 
   // fires up on press of add to cart button
   const onPlaceOrder = useCallback(() => {
+    setLoading(true)
+    setModal(false)
+    const totalPrice = getTotalCartPrice(cartItems)
+    dispatch(Actions.emptyCartItems())
     addDoc(collection(db, 'orders'), {
       name,
       items: cartItems,
-      total: getTotalCartPrice(cartItems),
+      total: totalPrice,
       date: new Date().toISOString(),
     })
       .then((res) => {
-        navigation.navigate('OrderPlaced', {
-          orderId: res.id,
-          total: getTotalCartPrice(cartItems),
-          restaurant: name,
-        })
-        dispatch(Actions.emptyCartItems())
+        setTimeout(() => {
+          setLoading(false)
+          navigation.navigate('OrderPlaced', {
+            orderId: res.id,
+            total: totalPrice,
+            restaurant: name,
+          })
+        }, 2000)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -74,6 +82,7 @@ export default function Details({ route, navigation }) {
         cartItems={cartItems}
         onPlaceOrder={onPlaceOrder}
       />
+      {loading && <OverlayLoading />}
     </View>
   )
 }
