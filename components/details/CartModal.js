@@ -12,33 +12,15 @@ import { Ionicons } from '@expo/vector-icons'
 import OrderItem from './OrderItem'
 import COLORS from '../../constants/colors'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
-import { useDispatch, useSelector } from 'react-redux'
 import { Divider } from 'react-native-elements'
-import db from '../../firebase/firebase'
-import { collection, addDoc } from 'firebase/firestore'
-import { emptyCartItems } from '../../redux/cart/actions'
 
-export default function CartModal({ modal, setModal, name, navigation }) {
-  const { cartItems } = useSelector((state) => state.cart)
-  const dispatch = useDispatch()
-  const addOrderToFirebase = () => {
-    addDoc(collection(db, 'orders'), {
-      name,
-      items: cartItems,
-      total: getTotalCartPrice(cartItems),
-      date: new Date().toISOString(),
-    })
-      .then((res) => {
-        navigation.navigate('OrderPlaced', {
-          orderId: res.id,
-          total: getTotalCartPrice(cartItems),
-          restaurant: name,
-        })
-        setModal(false)
-        dispatch(emptyCartItems())
-      })
-      .catch((err) => console.log(err))
-  }
+export default function CartModal({
+  modal,
+  setModal,
+  name,
+  cartItems,
+  onPlaceOrder,
+}) {
   return (
     <Modal
       visible={modal}
@@ -57,10 +39,7 @@ export default function CartModal({ modal, setModal, name, navigation }) {
           <ScrollView showsVerticalScrollIndicator={false}>
             <OrderItem cartItems={cartItems} />
             <SubTotal cartItems={cartItems} />
-            <CheckOutButton
-              cartItems={cartItems}
-              addOrderToFirebase={addOrderToFirebase}
-            />
+            <CheckOutButton cartItems={cartItems} onPlaceOrder={onPlaceOrder} />
           </ScrollView>
         </View>
       </View>
@@ -77,7 +56,7 @@ const SubTotal = ({ cartItems }) => {
   )
 }
 
-const CheckOutButton = ({ cartItems, addOrderToFirebase }) => {
+const CheckOutButton = ({ cartItems, onPlaceOrder }) => {
   return (
     <View style={styles.checkoutButton}>
       <Text style={styles.text}>{getTotalCartItem(cartItems)}</Text>
@@ -92,7 +71,7 @@ const CheckOutButton = ({ cartItems, addOrderToFirebase }) => {
         style={{ borderColor: '#424242' }}
         orientation="vertical"
       />
-      <TouchableOpacity onPress={addOrderToFirebase}>
+      <TouchableOpacity onPress={onPlaceOrder}>
         <Text style={styles.text}> Checkout</Text>
       </TouchableOpacity>
     </View>

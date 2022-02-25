@@ -1,28 +1,57 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Divider } from 'react-native-elements'
 import About from '../components/details/About'
 import { StatusBar } from 'expo-status-bar'
 import MenuItems from '../components/details/MenuItems'
 import COLORS from '../constants/colors'
 import ViewCart from '../components/details/ViewCart'
-import { useDispatch } from 'react-redux'
-import { addToCart, removeFromCart } from '../redux/cart/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import * as Actions from '../redux/cart/actions'
+import { getTotalCartPrice } from '../helpers/details'
+import { collection, addDoc } from 'firebase/firestore'
+import db from '../firebase/firebase'
+import CartModal from '../components/details/CartModal'
 
 export default function Details({ route, navigation }) {
   const { params } = route
   const { name, image_url, price, categories, rating, review_count } = params
   const time = '35-40 min'
-  const { cartItems } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
-  const checkBoxHandler = (state, item) => {
+
+  const [modal, setModal] = useState(false)
+
+  // get cart items form redux
+  const { cartItems } = useSelector((state) => state.cart)
+
+  // fires up on press of a food checkbox is checked
+  const checkBoxHandler = useCallback((state, item) => {
     const { id } = item
     if (state) {
-      dispatch(addToCart(item))
+      dispatch(Actions.addToCart(item))
     } else {
-      dispatch(removeFromCart(id))
+      dispatch(Actions.removeFromCart(id))
     }
-  }
+  }, [])
+
+  // fires up on press of add to cart button
+  const onPlaceOrder = useCallback(() => {
+    addDoc(collection(db, 'orders'), {
+      name,
+      items: cartItems,
+      total: getTotalCartPrice(cartItems),
+      date: new Date().toISOString(),
+    })
+      .then((res) => {
+        navigation.navigate('OrderPlaced', {
+          orderId: res.id,
+          total: getTotalCartPrice(cartItems),
+          restaurant: name,
+        })
+        dispatch(Actions.emptyCartItems())
+      })
+      .catch((err) => console.log(err))
+  }, [])
   return (
     <View style={styles.screen}>
       <StatusBar style="inverted" />
@@ -37,7 +66,14 @@ export default function Details({ route, navigation }) {
       />
       <Divider width={2} style={{ marginVertical: 20 }} />
       <MenuItems cartItems={cartItems} checkBoxHandler={checkBoxHandler} />
-      <ViewCart navigation={navigation} name={name} />
+      <ViewCart cartItems={cartItems} modal={modal} setModal={setModal} />
+      <CartModal
+        modal={modal}
+        setModal={setModal}
+        name={name}
+        cartItems={cartItems}
+        onPlaceOrder={onPlaceOrder}
+      />
     </View>
   )
 }

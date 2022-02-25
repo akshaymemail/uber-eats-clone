@@ -5,16 +5,12 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import COLORS from '../../constants/colors'
 import { Divider } from 'react-native-elements'
-import { useSelector } from 'react-redux'
 import { getTotalCartItem, getTotalCartPrice } from '../../helpers/details'
-import CartModal from './CartModal'
 
-export default function ViewCart({ navigation, name }) {
-  const { cartItems } = useSelector((state) => state.cart)
-  const [modal, setModal] = useState(false)
+export default function ViewCart({ cartItems, modal, setModal }) {
   return cartItems.length > 0 ? (
     <Fragment>
       <View style={styles.container}>
@@ -44,12 +40,6 @@ export default function ViewCart({ navigation, name }) {
           </View>
         </View>
       </View>
-      <CartModal
-        modal={modal}
-        setModal={setModal}
-        name={name}
-        navigation={navigation}
-      />
     </Fragment>
   ) : null
 }
