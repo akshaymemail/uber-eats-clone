@@ -3,21 +3,9 @@ import React from 'react'
 import foods from '../../fake-db/foods'
 import { Divider } from 'react-native-elements'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, removeFromCard } from '../../redux/cart/actions'
 import { isExistInCart } from '../../helpers/details'
 
-export default function MenuItems() {
-  const dispatch = useDispatch()
-  const { cartItems } = useSelector((state) => state.cart)
-  const checkBoxHandler = (state, item) => {
-    const { id } = item
-    if (state) {
-      dispatch(addToCart(item))
-    } else {
-      dispatch(removeFromCard(id))
-    }
-  }
+export default function MenuItems({ cartItems, checkBoxHandler }) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((item, index) => {
