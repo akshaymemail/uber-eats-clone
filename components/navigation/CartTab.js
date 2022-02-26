@@ -10,9 +10,9 @@ export default function CartTab() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Cart"
+      initialRouteName="CartScreen"
     >
-      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="CartScreen" component={Cart} />
     </Stack.Navigator>
   )
 }

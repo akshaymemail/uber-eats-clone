@@ -3,7 +3,7 @@ import React from 'react'
 import COLORS from '../../constants/colors'
 import { FontAwesome5 } from '@expo/vector-icons'
 
-export default function BottomTabs() {
+export default function BottomTabs({ tabs }) {
   return (
     <View style={styles.container}>
       <Icon icon="home" text="Home" />

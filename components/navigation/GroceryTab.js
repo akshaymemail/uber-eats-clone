@@ -10,9 +10,9 @@ export default function GroceryTab() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Grocery"
+      initialRouteName="GroceryScreen"
     >
-      <Stack.Screen name="Grocery" component={Grocery} />
+      <Stack.Screen name="GroceryScreen" component={Grocery} />
     </Stack.Navigator>
   )
 }

@@ -10,9 +10,9 @@ export default function BrowseTab() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Browse"
+      initialRouteName="BrowseScreen"
     >
-      <Stack.Screen name="Browse" component={Browse} />
+      <Stack.Screen name="BrowseScreen" component={Browse} />
     </Stack.Navigator>
   )
 }

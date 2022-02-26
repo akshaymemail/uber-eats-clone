@@ -10,9 +10,9 @@ export default function AccountTab() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Account"
+      initialRouteName="AccountScreen"
     >
-      <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="AccountScreen" component={Account} />
     </Stack.Navigator>
   )
 }

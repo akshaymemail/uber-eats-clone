@@ -33,7 +33,7 @@ export default function RestaurantsItems({
         key={index}
         style={styles.content}
         activeOpacity={0.8}
-        onPress={() => navigation.navigate('Details', restaurant)}
+        onPress={() => navigation.navigate('DetailsScreen', restaurant)}
       >
         <RestaurantsImage imageUrl={image_url} />
         <RestaurantsInfo name={name} time={deliveryTime} rating={rating} />

@@ -52,7 +52,7 @@ export default function Details({ route, navigation }) {
       .then((res) => {
         setTimeout(() => {
           setLoading(false)
-          navigation.navigate('OrderPlaced', {
+          navigation.navigate('OrderPlacedScreen', {
             orderId: res.id,
             total: totalPrice,
             restaurant: name,

@@ -12,11 +12,11 @@ export default function HomeTab() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
+      initialRouteName="HomeScreen"
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Details" component={Details} />
-      <Stack.Screen name="OrderPlaced" component={OrderPlaced} />
+      <Stack.Screen name="HomeScreen" component={Home} />
+      <Stack.Screen name="DetailsScreen" component={Details} />
+      <Stack.Screen name="OrderPlacedScreen" component={OrderPlaced} />
     </Stack.Navigator>
   )
 }
