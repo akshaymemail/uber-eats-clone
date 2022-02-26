@@ -8,11 +8,6 @@ import COLORS from '../../constants/colors'
 import ViewCart from '../../components/details/ViewCart'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Actions from '../../redux/cart/actions'
-import { getTotalCartPrice } from '../../helpers/details'
-import { collection, addDoc } from 'firebase/firestore'
-import db from '../../firebase/firebase'
-import CartModal from '../../components/details/CartModal'
-import OverlayLoading from '../../components/common/OverlayLoading'
 import foods from '../../fake-db/foods'
 
 export default function Details({ route, navigation }) {
@@ -20,10 +15,6 @@ export default function Details({ route, navigation }) {
   const { name, image_url, price, categories, rating, review_count } = params
   const time = '35-40 min'
   const dispatch = useDispatch()
-
-  const [modal, setModal] = useState(false)
-  const [loading, setLoading] = useState(false)
-
   // get cart items form redux
   const { cartItems } = useSelector((state) => state.cart)
 
@@ -38,29 +29,7 @@ export default function Details({ route, navigation }) {
   }, [])
 
   // fires up on press of add to cart button
-  const onPlaceOrder = () => {
-    setLoading(true)
-    setModal(false)
-    const totalPrice = getTotalCartPrice(cartItems)
-    dispatch(Actions.emptyCartItems())
-    addDoc(collection(db, 'orders'), {
-      name,
-      items: cartItems,
-      total: totalPrice,
-      date: new Date().toISOString(),
-    })
-      .then((res) => {
-        setTimeout(() => {
-          setLoading(false)
-          navigation.navigate('OrderPlacedScreen', {
-            orderId: res.id,
-            total: totalPrice,
-            restaurant: name,
-          })
-        }, 2000)
-      })
-      .catch((err) => console.log(err))
-  }
+
   return (
     <View style={styles.screen}>
       <StatusBar style="inverted" />
@@ -80,15 +49,7 @@ export default function Details({ route, navigation }) {
         checkBoxHandler={checkBoxHandler}
         isCheckbox={true}
       />
-      <ViewCart cartItems={cartItems} modal={modal} setModal={setModal} />
-      <CartModal
-        modal={modal}
-        setModal={setModal}
-        name={name}
-        cartItems={cartItems}
-        onPlaceOrder={onPlaceOrder}
-      />
-      {loading && <OverlayLoading />}
+      <ViewCart cartItems={cartItems} name={name} navigation={navigation} />
     </View>
   )
 }

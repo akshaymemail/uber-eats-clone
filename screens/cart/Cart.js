@@ -1,12 +1,27 @@
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
-import React from 'react'
+import React, { Fragment } from 'react'
 import EmptyCart from '../../components/cart/EmptyCart'
+import { useSelector } from 'react-redux'
+import ViewCart from '../../components/details/ViewCart'
+import MenuItems from '../../components/details/MenuItems'
 
 export default function Cart({ navigation, route }) {
+  const { cartItems } = useSelector((state) => state.cart)
   return (
     <View style={styles.screen}>
       <Title title="Carts" />
-      <EmptyCart navigation={navigation} />
+      {cartItems.length === 0 ? (
+        <EmptyCart navigation={navigation} />
+      ) : (
+        <Fragment>
+          <MenuItems foods={cartItems} isCheckbox={false} />
+          <ViewCart
+            cartItems={cartItems}
+            name="Mirchi Bazar"
+            navigation={navigation}
+          />
+        </Fragment>
+      )}
     </View>
   )
 }
