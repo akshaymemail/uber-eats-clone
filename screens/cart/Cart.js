@@ -6,7 +6,7 @@ import ViewCart from '../../components/details/ViewCart'
 import MenuItems from '../../components/details/MenuItems'
 
 export default function Cart({ navigation, route }) {
-  const { cartItems } = useSelector((state) => state.cart)
+  const { cartItems, restaurant } = useSelector((state) => state.cart)
   return (
     <View style={styles.screen}>
       <Title title="Carts" />
@@ -17,7 +17,7 @@ export default function Cart({ navigation, route }) {
           <MenuItems foods={cartItems} isCheckbox={false} />
           <ViewCart
             cartItems={cartItems}
-            name="Mirchi Bazar"
+            name={restaurant}
             navigation={navigation}
           />
         </Fragment>

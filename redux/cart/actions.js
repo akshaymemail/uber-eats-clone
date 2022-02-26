@@ -1,6 +1,6 @@
 import * as Types from './types'
-export const addToCart = (item) => (dispatch) => {
-  dispatch({ type: Types.ADD_TO_CART, payload: item })
+export const addToCart = (item, name) => (dispatch) => {
+  dispatch({ type: Types.ADD_TO_CART, item, name })
 }
 
 export const removeFromCart = (id) => (dispatch) => {

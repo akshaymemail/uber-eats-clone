@@ -22,14 +22,13 @@ export default function Details({ route, navigation }) {
   const checkBoxHandler = useCallback((state, item) => {
     const { id } = item
     if (state) {
-      dispatch(Actions.addToCart(item))
+      dispatch(Actions.addToCart(item, name))
     } else {
       dispatch(Actions.removeFromCart(id))
     }
   }, [])
 
   // fires up on press of add to cart button
-
   return (
     <View style={styles.screen}>
       <StatusBar style="inverted" />
