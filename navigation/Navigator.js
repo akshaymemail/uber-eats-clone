@@ -91,7 +91,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             target: route.key,
           })
         }
-        console.log(isFocused)
+
         return (
           <TouchableOpacity
             key={index}
