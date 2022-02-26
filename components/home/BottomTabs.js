@@ -9,7 +9,7 @@ export default function BottomTabs() {
       <Icon icon="home" text="Home" />
       <Icon icon="search" text="Browse" />
       <Icon icon="shopping-bag" text="Grocery" />
-      <Icon icon="receipt" text="Orders" />
+      <Icon icon="shopping-cart" text="Cart" />
       <Icon icon="user" text="Account" />
     </View>
   )
