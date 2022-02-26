@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, StatusBar as Status } from 'react-native'
 import React from 'react'
-import COLORS from '../constants/colors'
+import COLORS from '../../constants/colors'
 import LottieView from 'lottie-react-native'
 import { StatusBar } from 'expo-status-bar'
-import MenuItems from '../components/details/MenuItems'
-import foods from '../fake-db/foods'
+import MenuItems from '../../components/details/MenuItems'
+import foods from '../../fake-db/foods'
 
 export default function OrderPlaced({ navigation, route }) {
   const { params } = route
@@ -24,7 +24,7 @@ const Completed = () => {
   return (
     <View style={styles.checkmark}>
       <LottieView
-        source={require('../assets/animations/check-mark.json')}
+        source={require('../../assets/animations/check-mark.json')}
         speed={0.8}
         style={{
           height: 100,
@@ -51,7 +51,7 @@ const Cooking = () => {
   return (
     <View style={{ marginVertical: 20 }}>
       <LottieView
-        source={require('../assets/animations/cooking.json')}
+        source={require('../../assets/animations/cooking.json')}
         style={{
           height: 200,
           width: 200,

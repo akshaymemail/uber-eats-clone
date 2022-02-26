@@ -1,25 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from '../screens/Home'
-import Details from '../screens/Details'
-import OrderPlaced from '../screens/OrderPlaced'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import HomeTab from '../components/navigation/HomeTab'
+import AccountTab from '../components/navigation/AccountTab'
+import BrowseTab from '../components/navigation/BrowseTab'
+import GroceryTab from '../components/navigation/GroceryTab'
+import CartTab from '../components/navigation/CartTab'
 
 export default function Navigator() {
-  const Stack = createNativeStackNavigator()
+  const Tab = createBottomTabNavigator()
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Tab.Navigator
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home"
       >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={Details} />
-        <Stack.Screen name="OrderPlaced" component={OrderPlaced} />
-      </Stack.Navigator>
+        <Tab.Screen name="HomeTab" component={HomeTab} />
+        <Tab.Screen name="BrowseTab" component={BrowseTab} />
+        <Tab.Screen name="GroceryTab" component={GroceryTab} />
+        <Tab.Screen name="CartTab" component={CartTab} />
+        <Tab.Screen name="AccountTab" component={AccountTab} />
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }

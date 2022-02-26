@@ -6,15 +6,14 @@ import {
   StatusBar as Status,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import categoriesList from '../fake-db/categories'
-import Keys from '../keys/keys'
+import categoriesList from '../../fake-db/categories'
+import Keys from '../../keys/keys'
 import { Divider } from 'react-native-elements'
-import LoadingBox from '../components/common/LoadingBox'
-import HeaderTabs from '../components/home/HeaderTabs'
-import BottomTabs from '../components/home/BottomTabs'
-import SearchBar from '../components/home/SearchBar'
-import Categories from '../components/home/Categories'
-import RestaurantsItems from '../components/home/RestaurantsItems'
+import LoadingBox from '../../components/common/LoadingBox'
+import HeaderTabs from '../../components/home/HeaderTabs'
+import SearchBar from '../../components/home/SearchBar'
+import Categories from '../../components/home/Categories'
+import RestaurantsItems from '../../components/home/RestaurantsItems'
 import { StatusBar } from 'expo-status-bar'
 
 export default function Home({ navigation }) {
@@ -70,7 +69,6 @@ export default function Home({ navigation }) {
         />
       </ScrollView>
       <Divider width={1} />
-      <BottomTabs />
       <StatusBar style="dark" />
     </View>
   )
