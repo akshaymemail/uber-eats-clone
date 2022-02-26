@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import React from 'react'
+import EmptyCart from '../../components/cart/EmptyCart'
 
-export default function Cart() {
+export default function Cart({ navigation, route }) {
   return (
     <View style={styles.screen}>
-      <Text>Cart</Text>
+      <Title title="Carts" />
+      <EmptyCart navigation={navigation} />
+    </View>
+  )
+}
+
+const Title = ({ title }) => {
+  return (
+    <View style={styles.titleContainer}>
+      <Text style={styles.titleText}>{title}</Text>
     </View>
   )
 }
@@ -12,7 +22,13 @@ export default function Cart() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  titleContainer: {
+    padding: 20,
+    marginTop: StatusBar.currentHeight + 20,
+  },
+  titleText: {
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 })
