@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
 
-export default function SearchBox({ placeholder, text, onChangeText }) {
+export default function SearchBox({ placeholder, value, onChangeText }) {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -10,7 +10,7 @@ export default function SearchBox({ placeholder, text, onChangeText }) {
         <TextInput
           style={styles.input}
           placeholder={placeholder}
-          value={text}
+          value={value}
           onChangeText={onChangeText}
         />
       </View>
@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 10,
-    marginVertical: 10,
     paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 50,

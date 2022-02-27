@@ -11,7 +11,6 @@ import Keys from '../../keys/keys'
 import { Divider } from 'react-native-elements'
 import LoadingBox from '../../components/common/LoadingBox'
 import HeaderTabs from '../../components/home/HeaderTabs'
-import SearchBar from '../../components/home/SearchBar'
 import Categories from '../../components/home/Categories'
 import RestaurantsItems from '../../components/home/RestaurantsItems'
 import { StatusBar } from 'expo-status-bar'
@@ -53,7 +52,7 @@ export default function Home({ navigation }) {
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBox
           placeholder={'New York, Hollywood, etc'}
-          text={city}
+          value={city}
           onChangeText={(text) => {
             setRefreshing(true)
             setCity(text)
@@ -76,7 +75,7 @@ export default function Home({ navigation }) {
           navigation={navigation}
         />
       </ScrollView>
-      <Divider width={1} />
+
       <StatusBar style="dark" />
     </View>
   )
@@ -91,5 +90,6 @@ const styles = StyleSheet.create({
     marginTop: Status.currentHeight + 10,
     backgroundColor: '#ffffff',
     paddingVertical: 20,
+    paddingHorizontal: 10,
   },
 })
