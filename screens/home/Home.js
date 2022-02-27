@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [activeTab, setActiveTab] = useState('Delivery')
-  const [city, setCity] = useState('hollywood')
+  const [city, setCity] = useState('New York')
   useEffect(() => {
     fetch(
       `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`,
@@ -53,6 +53,7 @@ export default function Home({ navigation }) {
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBox
           placeholder={'New York, Hollywood, etc'}
+          text={city}
           onChangeText={(text) => {
             setRefreshing(true)
             setCity(text)
