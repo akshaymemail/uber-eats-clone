@@ -15,6 +15,7 @@ import SearchBar from '../../components/home/SearchBar'
 import Categories from '../../components/home/Categories'
 import RestaurantsItems from '../../components/home/RestaurantsItems'
 import { StatusBar } from 'expo-status-bar'
+import SearchBox from '../../components/common/SearchBox'
 
 export default function Home({ navigation }) {
   const [restaurants, setRestaurants] = useState([])
@@ -42,7 +43,7 @@ export default function Home({ navigation }) {
         console.error(error)
         setLoading(false)
       })
-  }, [refreshing])
+  }, [refreshing, city])
   if (loading) {
     return <LoadingBox />
   }
@@ -50,7 +51,13 @@ export default function Home({ navigation }) {
     <View style={styles.screen}>
       <View style={styles.content}>
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        <SearchBar city={city} setCity={setCity} />
+        <SearchBox
+          placeholder={'New York, Hollywood, etc'}
+          onChangeText={(text) => {
+            setRefreshing(true)
+            setCity(text)
+          }}
+        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
