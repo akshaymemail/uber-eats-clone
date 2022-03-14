@@ -6,8 +6,10 @@ import {
   TextInput,
   Platform,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from 'react-native'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 
 export default function Login() {
   return (
@@ -43,11 +45,16 @@ const BottomSheet = () => {
         Use your Uber account to get started
       </Text>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="akshaymemail@gmail.com"
-          keyboardType="email-address"
-        />
+        <View style={styles.inputRow}>
+          <TextInput
+            style={styles.input}
+            placeholder="akshaymemail@gmail.com"
+            keyboardType="email-address"
+          />
+          <TouchableOpacity activeOpacity={0.5}>
+            <Ionicons name="arrow-forward" size={30} color="green" />
+          </TouchableOpacity>
+        </View>
       </View>
     </KeyboardAvoidingView>
   )
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  input: {
+  inputRow: {
     marginTop: 10,
     backgroundColor: '#f2f2f2',
     borderColor: '#cccccc',
@@ -98,6 +105,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 10,
     paddingVertical: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  input: {
     fontSize: 20,
   },
 })
