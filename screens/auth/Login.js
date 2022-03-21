@@ -42,7 +42,7 @@ const BottomSheet = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <Text style={styles.bottomSheetText}>
-        Use your Uber account to get started
+        Use your Uber account to get started!
       </Text>
       <View style={styles.inputContainer}>
         <View style={styles.inputRow}>
